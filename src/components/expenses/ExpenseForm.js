@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { TransactionsContext } from "@/context/TransactionsContext";
+import { useRouter } from "next/router";
 
 export default function ExpenseForm() {
   const { transactions, addTransaction, deleteTransaction, balance } =
     useContext(TransactionsContext);
+
+  const router = useRouter();
 
   const handleAddTransaction = (e) => {
     e.preventDefault();
@@ -28,6 +31,10 @@ export default function ExpenseForm() {
 
     addTransaction(newTransaction);
     e.target.reset();
+  };
+
+  const handleGoToDashboard = () => {
+    router.push("/dashboard"); // Redirect to the dashboard page
   };
 
   return (
@@ -87,12 +94,20 @@ export default function ExpenseForm() {
           className="input"
         />
         <input type="date" name="date" className="input" />
-        <button type="submit" className="add-btn">
-          Add Transaction
-        </button>
+
+        <div className="button-group">
+          <button type="submit" className="add-btn">
+            Add Transaction
+          </button>
+          <button
+            type="button"
+            className="dashboard-btn"
+            onClick={handleGoToDashboard}
+          >
+            Go to Dashboard
+          </button>
+        </div>
       </form>
     </div>
   );
 }
-
-// if(balance==style= {{ }}
