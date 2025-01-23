@@ -1,22 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { TransactionsContext } from "@/context/TransactionsContext";
 import { useRouter } from "next/router";
+import useCategories from "@/hooks/useCategories";
 
 export default function ExpenseForm() {
   const { transactions, addTransaction, deleteTransaction, balance } =
     useContext(TransactionsContext);
 
+  const { incomeCategories, expenseCategories, addCategory } = useCategories();
   const router = useRouter();
+  const [newCategory, setNewCategory] = useState("");
+  const [type, setType] = useState("income"); // Default type
 
   const handleAddTransaction = (e) => {
     e.preventDefault();
 
-    const type = e.target.type.value;
-    const description = e.target.description.value;
+    const category = e.target.category.value;
     const amount = parseFloat(e.target.amount.value);
     const date = e.target.date.value;
 
-    if (!description || !amount || !date || isNaN(amount)) {
+    if (!category || !amount || !date || isNaN(amount)) {
       alert("Please fill in all fields correctly!");
       return;
     }
@@ -25,7 +28,7 @@ export default function ExpenseForm() {
       id: Date.now(),
       type,
       amount,
-      description,
+      category,
       date,
     };
 
@@ -33,8 +36,19 @@ export default function ExpenseForm() {
     e.target.reset();
   };
 
+  const handleAddCategory = () => {
+    if (newCategory.trim()) {
+      addCategory(type, newCategory);
+      setNewCategory("");
+    }
+  };
+
+  const handleTypeChange = (e) => {
+    setType(e.target.value);
+  };
+
   const handleGoToDashboard = () => {
-    router.push("/dashboard"); // Redirect to the dashboard page
+    router.push("/dashboard");
   };
 
   return (
@@ -58,7 +72,7 @@ export default function ExpenseForm() {
                   {transaction.type === "income" ? "+" : "-"} $
                   {transaction.amount}
                 </td>
-                <td>{transaction.description}</td>
+                <td>{transaction.category}</td>
                 <td>{transaction.date}</td>
                 <td>
                   <button
@@ -77,16 +91,26 @@ export default function ExpenseForm() {
       )}
 
       <form className="add-item-form" onSubmit={handleAddTransaction}>
-        <select name="type" className="type-select">
+        <select
+          name="type"
+          className="type-select"
+          value={type}
+          onChange={handleTypeChange}
+        >
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </select>
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          className="input"
-        />
+
+        <select name="category" className="type-select">
+          {(type === "income" ? incomeCategories : expenseCategories).map(
+            (cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            )
+          )}
+        </select>
+
         <input
           type="number"
           name="amount"

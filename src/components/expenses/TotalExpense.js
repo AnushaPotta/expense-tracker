@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { TransactionsContext } from "@/context/TransactionsContext";
 
-const TotalExpense = ({ transactions }) => {
+const TotalExpense = () => {
+  const { transactions } = useContext(TransactionsContext); // Use context to get transactions
   const [totalExpense, setTotalExpense] = useState(0);
 
   useEffect(() => {
@@ -14,19 +16,10 @@ const TotalExpense = ({ transactions }) => {
 
   return (
     <div>
-      <h2>Expense</h2>
+      <h2>Total Expense</h2>
       <p style={{ color: "red" }}>${totalExpense}</p>
     </div>
   );
 };
 
 export default TotalExpense;
-
-/*style={{
-        border: "1px solid red",
-        padding: "10px",
-        borderRadius: "8px",
-        textAlign: "center",
-        backgroundColor: "#fdecea",
-        color: "#c62828",
-      }}*/

@@ -1,10 +1,12 @@
 import "@/styles/globals.css";
+import { TransactionsProvider } from "@/context/TransactionsContext";
 
-export default function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
     <TransactionsProvider>
       <Component {...pageProps} />
     </TransactionsProvider>
   );
 }
->>>>>>> 1135985 (Initial commit from Create Next App)
+
+export default MyApp;
