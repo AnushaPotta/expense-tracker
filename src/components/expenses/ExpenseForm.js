@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { TransactionsContext } from "@/context/TransactionsContext";
 import { useRouter } from "next/router";
 import useCategories from "@/hooks/useCategories";
+import { toast } from "react-toastify";
 
 export default function ExpenseForm() {
   const { transactions, addTransaction, deleteTransaction, balance } =
@@ -48,6 +49,16 @@ export default function ExpenseForm() {
   };
 
   const handleGoToDashboard = () => {
+    if (transactions.length === 0) {
+      toast.error("Please add transactions first!", {
+        position: "top-center",
+        autoClose: 3000, // Closes after 3 seconds
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+      return;
+    }
     router.push("/dashboard");
   };
 

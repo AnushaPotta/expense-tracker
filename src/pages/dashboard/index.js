@@ -47,14 +47,16 @@ export default function Dashboard() {
   return (
     <div>
       <Header />
-      <div className="dashboard-box">
-        <h1>Dashboard</h1>
-        <div className="chart-container">
-          <Doughnut data={chartData} />
+      <div className="dashboard-container">
+        <div className="dashboard-box">
+          <h1>Dashboard</h1>
+          <div className="chart-container">
+            <Doughnut data={chartData} />
+          </div>
+          <button className="add-btn" onClick={handleAddMoreTransactions}>
+            Add More Transactions
+          </button>
         </div>
-        <button className="add-btn" onClick={handleAddMoreTransactions}>
-          Add More Transactions
-        </button>
       </div>
     </div>
   );
