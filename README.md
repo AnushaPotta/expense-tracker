@@ -2,9 +2,6 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-This is an Expense Tracker App, that shows your balance when you enter your income and expenses.
-
-![alt text](<Screen Shot 2025-01-23 at 10.10.23 AM-1.png>)
 First, run the development server:
 
 ```bash
@@ -21,17 +18,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Learn More
+This is an Expense Tracker App, that shows your balance when you enter your income and expenses.
 
-To learn more about Next.js, take a look at the following resources:
+![alt text](<Screen Shot 2025-01-23 at 10.10.23 AM-1.png>)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+![alt text](<Screen Shot 2025-01-23 at 10.11.21 AM-1.png>)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+when you click go to dashboard button it will show your expenses chart.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+![alt text](<Screen Shot 2025-01-23 at 10.11.31 AM-1.png>)
